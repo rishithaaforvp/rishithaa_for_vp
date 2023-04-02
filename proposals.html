@@ -40,47 +40,36 @@
         #suggestion:hover {
             background-color: #18978f;
         }
-        #imagedisplay {
-            position : fixed ;
+        #leftarrow {
+            position : absolute ;
             top : 0px ;
             left : 0px ;
-            bottom : 0px ;
-            width : 100% ;
-            /* height : 100% ; */
-            background-color: #0a0f15;
-            display: none;
-            /* overflow: scroll; */
         }
-
-        @media screen and (min-width : 768px) {
-            #imageouterpanel {
+        #rightarrow {
+            position : absolute ;
+            top : 0px ;
+            right: 0px ;
+        }
+        @media screen and (min-width : 850px) {
+            #imageblock {
                 width : 50% ;
             }
-            #imagepanel {
-                width : 100% ;
+            #image1 {
+                width : 50% ;
             }
-        }
-        @media screen and (max-width : 767px) {
-            #imageouterpanel {
-                width : 80% ;
+            #image2 {
+                width : 50% ;
+            }
+            #image3 {
+                width : 50% ;
+            }
+            #image4 {
+                width : 50% ;
             }
         }
     </style>
 </head>
   <body style="background-color: #0a0f15;" class="text-light">
-    <div id="imagedisplay">
-        <div class="d-flex flex-column vh-100">
-        <div class="d-flex flex-row">
-            <div class="ms-auto p-2" id="imageclosebutton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                  </svg>
-            </div>
-        </div>
-        <div class="my-auto mx-auto d-flex flex-column"  id="imageouterpanel">
-                <img src="./images/image2.jpg" style="width : 100% ;" id="imagepanel">
-        </div>
-    </div></div>
     <div class="d-flex flex-column vh-100">
     <div id="navbar" class="mb-3" style="background-color: #54bab9;">
         <div class="d-flex flex-row">
@@ -95,26 +84,22 @@
                 <a style="text-decoration: none; cursor : pointer" class="text-light px-4 py-3" id="vision" href="./vision.html"><b>Vision</b></a>
                 <a style="text-decoration: none; cursor : pointer" class="text-light px-4 py-3" id="work" href="./work_experience.html"><b>Work Experience</b></a>
                 <a style="text-decoration: none; cursor: pointer;" class="text-light px-4 py-3" id="council" href="./counciltestimonials.html"><b>Council Testimonials</b></a>
-                <a id="suggestion" style="text-decoration: none; cursor : pointer ; background-color: #18978f;" class="text-light px-4 py-3" href="./proposals.html"><b>Proposals</b></a>
+                <a id="suggestion" style="text-decoration: none; cursor : pointer ; background-color : #18978f ;" class="text-light px-4 py-3" href="./proposals.html"><b>Proposals</b></a>
                 <a id="suggestion" style="text-decoration: none; cursor : pointer" class="text-light px-4 py-3" href="./suggestions.html"><b>Suggestions</b></a>
             </div>
         </div>
     </div>
     <div id="mainbody">
-        <div class="container">
-            <div class="row gx-0">
-                <div class="col-4" id="image1">
-                    <img src="./images/image1.jpg" style="width : 100%;">
-                </div>
-                <div class="col-4" id="image2">
-                    <img src="./images/image2.jpg" style="width : 100% ;">
-                </div>
-                <div class="col-4" id="image3">
-                    <img src="./images/image3.jpg" style="width : 100% ;">
-                </div>
-                <div class="col-4" id="image4">
-                    <img src="./images/image4.jpg" style="width : 100% ;">
-                </div>
+        <div class="d-flex flex-column align-items-center">
+            <div class="container-md" style="width : 100% ;">
+                <div id="imageblock" style="position : relative ;" class="mx-auto d-flex flex-column align-items-center">
+                <img src="./images/image1.jpg" style="width : 100% ;" id="image1">
+                <img src="./images/image2.jpg" style="width : 100% ; display: none;" id="image2">
+                <img src="./images/image3.jpg" style="width : 100% ; display: none;" id="image3">
+                <img src="./images/image4.jpg" style="width : 100% ; display: none;" id="image4">
+                <div id="leftarrow" style="height : 100% ;" class="d-flex flex-column"><div class="my-auto p-2 bg-dark"><text style="cursor : default ;"><</text></div></div>
+                <div id="rightarrow" style="height : 100% ;" class="d-flex flex-column"><div class="my-auto p-2 bg-dark"><text style="cursor : default ;">></text></div></div>
+            </div>
             </div>
         </div>
     </div>
@@ -166,30 +151,30 @@
             sidebar.style.display = "none" ;
             togglebutton = true ;
         })
-        var imagedisplay = document.getElementById("imagedisplay") ;
-        document.getElementById("image1").addEventListener("click", () => {
-            document.getElementById("imagepanel").src = "./images/image1.jpg" ;
-            imagedisplay.style.display = "block" ;
+        var previous = document.getElementById("leftarrow") ;
+        var next = document.getElementById("rightarrow") ;
+        var present = 1 ;
+        setInterval(()=> {
+            document.getElementById(`image${present}`).style.display = "none" ;
+            present = present+1 ;
+            if(present == 5)
+            present = 1 ;
+            document.getElementById(`image${present}`).style.display = "inline" ;
+        }, 5000)
+        next.addEventListener("click", () => {
+            document.getElementById(`image${present}`).style.display = "none" ;
+            present = present+1 ;
+            if(present == 5)
+            present = 1 ;
+            document.getElementById(`image${present}`).style.display = "inline" ;
         })
-        document.getElementById("image2").addEventListener("click", () => {
-            document.getElementById("imagepanel").src = "./images/image2.jpg" ;
-            imagedisplay.style.display = "block" ;
+        previous.addEventListener("click", () => {
+            document.getElementById(`image${present}`).style.display = "none" ;
+            present = present-1 ;
+            if(present == 0)
+            present = 4 ;
+            document.getElementById(`image${present}`).style.display = "inline" ;
         })
-        document.getElementById("image3").addEventListener("click", () => {
-            document.getElementById("imagepanel").src = "./images/image3.jpg" ;
-            imagedisplay.style.display = "block" ;
-        })
-        document.getElementById("image4").addEventListener("click", () => {
-            document.getElementById("imagepanel").src = "./images/image4.jpg" ;
-            imagedisplay.style.display = "block" ;
-        })
-
-        var imageclosebutton = document.getElementById("imageclosebutton") ;
-        var imagedisplay = document.getElementById("imagedisplay") ;
-        imageclosebutton.addEventListener("click", () => {
-            imagedisplay.style.display = "none" ;
-        })
-
     </script>
 </body>
 </html>
