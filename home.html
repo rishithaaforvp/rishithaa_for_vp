@@ -171,9 +171,9 @@
         })
         previous.addEventListener("click", () => {
             document.getElementById(`image${present}`).style.display = "none" ;
-            present = present+1 ;
-            if(present == 5)
-            present = 1 ;
+            present = present-1 ;
+            if(present == 0)
+            present = 4 ;
             document.getElementById(`image${present}`).style.display = "inline" ;
         })
     </script>
