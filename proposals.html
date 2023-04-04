@@ -98,6 +98,7 @@
                 <img src="./images/image3.jpg" style="width : 100% ; display: none;" id="image3">
                 <img src="./images/image4.jpg" style="width : 100% ; display: none;" id="image4">
                 <img src="./images/image5.jpg" style="width : 100% ; display: none;" id="image5">
+                <img src="./images/image6.jpg" style="width : 100% ; display: none;" id="image6">
                 <div id="leftarrow" style="height : 100% ;" class="d-flex flex-column"><div class="my-auto p-2 bg-dark"><text style="cursor : default ;"><</text></div></div>
                 <div id="rightarrow" style="height : 100% ;" class="d-flex flex-column"><div class="my-auto p-2 bg-dark"><text style="cursor : default ;">></text></div></div>
             </div>
@@ -158,14 +159,14 @@
         setInterval(()=> {
             document.getElementById(`image${present}`).style.display = "none" ;
             present = present+1 ;
-            if(present == 6)
+            if(present == 7)
             present = 1 ;
             document.getElementById(`image${present}`).style.display = "inline" ;
         }, 5000)
         next.addEventListener("click", () => {
             document.getElementById(`image${present}`).style.display = "none" ;
             present = present+1 ;
-            if(present == 6)
+            if(present == 7)
             present = 1 ;
             document.getElementById(`image${present}`).style.display = "inline" ;
         })
@@ -173,7 +174,7 @@
             document.getElementById(`image${present}`).style.display = "none" ;
             present = present-1 ;
             if(present == 0)
-            present = 5 ;
+            present = 6 ;
             document.getElementById(`image${present}`).style.display = "inline" ;
         })
     </script>
